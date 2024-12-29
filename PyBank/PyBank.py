@@ -6,8 +6,8 @@ import csv
 import os
 
 # Files to load and output (update with correct file paths)
-file_to_load = os.path.join("Resources", "budget_data.csv")  # Input file path
-file_to_output = os.path.join("analysis", "budget_analysis.txt")  # Output file path
+file_to_load = ("PyBank/Resources/budget_data.csv")  # Input file path
+file_to_output = ("PyBank/analysis/budget_analysis.txt")  # Output file path
 
 # Define variables to track the financial data
 total_months = 0
@@ -26,7 +26,7 @@ with open(file_to_load) as financial_data:
     header = next(reader)
 
     # Extract first row to avoid appending to net_change_list
-
+    
 
     # Track the total and net change
     
@@ -37,6 +37,7 @@ with open(file_to_load) as financial_data:
         # Track the total
         total_months += 1
         total_net += int(row[1])
+        net_change = int(row[1]) - previous_month_profit
 
         # Track the net change
         if total_months > 1: 
