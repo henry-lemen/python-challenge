@@ -6,8 +6,8 @@ import csv
 import os
 
 # Files to load and output (update with correct file paths)
-file_to_load = ("PyPoll/Resources/election_data.csv")  # Input file path
-file_to_output = ("PyPoll/analysis/election_analysis.txt")  # Output file path
+file_to_load = "PyPoll/Resources/election_data.csv"  # Input file path
+file_to_output = "PyPoll/analysis/election_analysis.txt"  # Output file path
 
 # Initialize variables to track the election data
 total_votes = 0  # Track the total number of votes cast
@@ -51,26 +51,26 @@ with open(file_to_load) as election_data:
 with open(file_to_output, "w") as txt_file:
 
     # Print the total vote count (to terminal)
-     print(f"Total Votes: {total_votes}")
+    print(f"Total Votes: {total_votes}")
 
     # Write the total vote count to the text file
-txt_file.write(f"Total Votes: {total_votes}\n")
+    txt_file.write(f"Total Votes: {total_votes}\n")
 
     # Loop through the candidates to determine vote percentages and identify the winner
-for candidate_name, votes in candidate_votes.items():
+    for candidate_name, votes in candidate_votes.items():
 
         # Get the vote count and calculate the percentage
-    vote_percentage = (votes / total_votes) * 100
+        vote_percentage = (votes / total_votes) * 100
 
         # Update the winning candidate if this one has more votes
-    if votes > winning_count:
+        if votes > winning_count:
             winning_count = votes
             winning_percentage = vote_percentage
             winning_candidate = candidate_name
 
         # Print and save each candidate's vote count and percentage
-    print(f"{candidate_name}: {vote_percentage:.3f}% ({votes})")
-    txt_file.write(f"{candidate_name}: {vote_percentage:.3f}% ({votes})\n")
+        print(f"{candidate_name}: {vote_percentage:.3f}% ({votes})")
+        txt_file.write(f"{candidate_name}: {vote_percentage:.3f}% ({votes})\n")
 
     # Generate and print the winning candidate summary
     print(f"\nWinner: {winning_candidate}")
@@ -78,6 +78,6 @@ for candidate_name, votes in candidate_votes.items():
     print(f"Winning Percentage: {winning_percentage:.3f}%")
 
     # Save the winning candidate summary to the text file
-txt_file.write(f"\nWinner: {winning_candidate}\n")
-txt_file.write(f"Winning Vote Count: {winning_count}\n")
-txt_file.write(f"Winning Percentage: {winning_percentage:.3f}%\n")
+    txt_file.write(f"\nWinner: {winning_candidate}\n")
+    txt_file.write(f"Winning Vote Count: {winning_count}\n")
+    txt_file.write(f"Winning Percentage: {winning_percentage:.3f}%\n")

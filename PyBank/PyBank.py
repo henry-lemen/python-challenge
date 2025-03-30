@@ -26,10 +26,13 @@ with open(file_to_load) as financial_data:
     header = next(reader)
 
     # Extract first row to avoid appending to net_change_list
+    first_row = next(reader)
+    total_months = 1
+    total_net = int(first_row[1])
+    previous_month_profit = int(first_row[1])
     
 
     # Track the total and net change
-    
 
     # Process each row of data
     for row in reader:
@@ -40,9 +43,9 @@ with open(file_to_load) as financial_data:
         net_change = int(row[1]) - previous_month_profit
 
         # Track the net change
-        if total_months > 1: 
-            net_change = int(row[1]) - previous_month_profit
-            net_change_list.append(net_change)
+        net_change = int(row[1]) - previous_month_profit
+        net_change_list.append(net_change)
+        previous_month_profit = int(row[1])
 
         # Calculate the greatest increase in profits (month and amount)
         if net_change > greatest_increase[1]:
